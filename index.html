@@ -9,11 +9,11 @@
 <body>
     <h1>Contact form</h1>
     <div class="form-container">
-        <form action="submit">
+        <form>
             <label id="form-label" for="">Contact us</label>
-            <input id="name-input" type="text" placeholder="Name" required>
-            <input id="email-input" type="text" placeholder="Email" required>
-            <textarea name="message" id="message-input" placeholder="Type your message here..." required></textarea>
+            <input id="name-input" type="text" minlength="1" maxlength="40" placeholder="Name" required>
+            <input id="email-input" type="email" placeholder="Email" required>
+            <textarea name="message" id="message-input" minlength="8" maxlength="400" placeholder="Type your message here..." required></textarea>
             <button id="send-button">Send</button>
         </form>
 
