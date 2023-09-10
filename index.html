@@ -4,21 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
     <title>Contact Form</title>
+    
 </head>
 <body>
-    <h1>Contact form</h1>
-    <div class="form-container">
-        <form>
-            <label id="form-label" for="">Contact us</label>
-            <input id="name-input" type="text" minlength="1" maxlength="40" placeholder="Name" required>
-            <input id="email-input" type="email" placeholder="Email" required>
-            <textarea name="message" id="message-input" minlength="8" maxlength="400" placeholder="Type your message here..." required></textarea>
-            <button id="send-button">Send</button>
+    <!-- <h1>Contact form</h1> -->
+    <div id="form-container">
+        <form id="form" action="/">
+            <h1>Contact us</h1>
+            <div class="input-control">
+                <label for="username">Username</label>
+                <input id="username" name="username" type="text" minlength="1" maxlength="40">
+                <div class="error"></div>
+            </div>
+            <div class="input-control">
+               <label for="email">Email</label>
+               <input id="email" type="text">
+               <div class="error"></div> 
+            </div>
+            <!-- <label id="form-label" for="">Contact us</label> -->
+            <div class="input-control">
+                <label for="message">Message</label>
+                <textarea name="message" id="longmessage" placeholder="Type your message here..."></textarea>
+                <div class="error"></div>
+            </div>
+            <button type="submit" id="send-button">Send</button>
         </form>
 
     </div>
 
-<script src="script.js"></script>
+
 </body>
 </html>
