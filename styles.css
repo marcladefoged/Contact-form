@@ -77,7 +77,8 @@ label {
 .input-control .error {
     margin: 2px;
     color: #ff3860;
-    font-size: 14px;
+    font-size: 18px;
+    font-weight: bolder;
     height: 30px;
 }
 

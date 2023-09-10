@@ -7,6 +7,7 @@ const sendButton = document.querySelector("#send-button");
 form.addEventListener('submit', e => {
     e.preventDefault();
 
+    
     validateInputs();
 })
 
@@ -39,9 +40,12 @@ const  validateInputs = () => {
         const emailValue = email.value.trim();
         const longmessageValue = longmessage.value.trim();
 
+        let success = true
+
         // Username validation
         if (usernameValue === '') {
             setError(username, 'Username is required!')
+            success = false;
         } else {
             setSuccess(username);
         }
@@ -49,10 +53,13 @@ const  validateInputs = () => {
         // Email validation
         if (emailValue === '') {
             setError(email, 'Email is required!')
+            success = false;
         } else if (!isValidEmail(emailValue)) {
             setError(email, 'Please provide a valid email!')
+            success = false;
         } else if (!emailValue.match("cphbusiness") || (emailValue.match("Cphbusiness"))) {
             setError(email, 'Please use a Cphbusiness email!')
+            success = false;
         } else {
             setSuccess(email);
         }
@@ -60,16 +67,44 @@ const  validateInputs = () => {
         // Longmessage validation
         if (longmessageValue === '') {
             setError(longmessage, 'Message is required!')
+            success = false;
         } else if (longmessageValue.length < 8) {
             setError(longmessage, 'Message must be atleast 8 characters long!')
+            success = false;
         } else {
             setSuccess(longmessage);
         }
 
-
         // Can not be submitted on Friday, Saturday or Sundays validation 
+        let currentDate = new Date();
+        let dayOfWeek = currentDate.getDay();
+
+        if (dayOfWeek === 5 || dayOfWeek === 6 || dayOfWeek === 0) {
+            // alert ("Sorry, you can not submit this contact form on Fridays, Saturdays or Sundays. Please try again monday!");
+            setError(longmessage, 'Sorry! you can not submit this contact form on Fridays, Saturdays or Sundays. Please try again monday!');
+            success = false;
+        } else {
+            setSuccess(longmessage);
+        }
+
+        console.log(dayOfWeek);
+        
+        if (success) {
+            sendMail ()
+        }
+        
 };
 
+function sendMail () {
+    let params = {
+        username : document.getElementById("username").value,
+        email : document.getElementById("email").value,
+        message : document.getElementById("longmessage").value
+    }
+    emailjs.send("service_dt3ualk", "template_ve56v1e", params).then(function (res) {
+        alert("Success! Thank you for reaching out! Your email has been sent");
+    }) 
+}
 
 
 
@@ -81,41 +116,10 @@ const  validateInputs = () => {
 
 
 
-// sendButton.addEventListener('click', (e) => {
-//     console.log('Email has been sent!');
 
-//     if (emailInput.value === '' || emailInput.value === null) {
-//         // errorMessage.push('Please insert an email!')
-//         emailInput.classList.add("errorInput");
-//         console.log("Email is required!")
-//     } 
-    
-//     if (messageInput.value.length <= 8) {
-//         messageInput.classList.add("errorInput");
-//         console.log('Message must be longer than 8 characters!')
-//     }
 
-//     if (messageInput.value.length >= 400) {
-//         console.log('Message cannot be longer than 400 characters!')
-//     }
-
-//     // validateCphbusiness();
-// })
 
 // TODO: The email should be a Cphbusiness email. Use a custom javascript function for this validation.
-
-// function validateCphbusiness () {
-//     if (email.value.match("cphbusiness") || (email.value.match("Cphbusiness"))) {
-//         email.classList.add("correctInput");
-//         console.log(email.value);
-//         return true
-        
-//     } else {
-//         email.classList.add("errorInput");
-//         console.log("this is not a Cphbusiness email!")
-//         return false
-//     }
-// }
 
 // TODO: All the input fields should not be empty. 
 

@@ -6,12 +6,20 @@
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
     <title>Contact Form</title>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function(){
+      emailjs.init("tWKZ5CEnrlmOMTsvS");
+        })();
+    </script>
     
 </head>
 <body>
     <!-- <h1>Contact form</h1> -->
     <div id="form-container">
-        <form id="form" action="/">
+        <form id="form">
             <h1>Contact us</h1>
             <div class="input-control">
                 <label for="username">Username</label>
@@ -29,7 +37,7 @@
                 <textarea name="message" id="longmessage" placeholder="Type your message here..."></textarea>
                 <div class="error"></div>
             </div>
-            <button type="submit" id="send-button">Send</button>
+            <button id="send-button">Send</button>
         </form>
 
     </div>
